@@ -3,12 +3,13 @@ package com.example.appdemoviasoft.Entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "provincias")
-public class Provincia {
+public class Provincia extends GeneralEntidad implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -25,11 +26,11 @@ public class Provincia {
 
     public Provincia() {
     }
-
+    @Override
     public UUID getId() {
         return id;
     }
-
+    @Override
     public void setId(UUID id) {
         this.id = id;
     }

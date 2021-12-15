@@ -5,6 +5,7 @@ import com.example.appdemoviasoft.Repository.IServicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,6 +20,12 @@ public List<Servicio> DevolverServicios(){
 }
 
 public void Crear(Servicio s){
+    if(s.getId()==null){
+        s.setEliminado(false);
+        s.setCreado(LocalDateTime.now());
+    }else{
+        s.setModificado(LocalDateTime.now());
+    }
     servicioRepository.save(s);
 }
 

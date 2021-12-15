@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "servicio")
-public class Servicio implements Serializable {
+public class Servicio  extends GeneralEntidad implements Serializable {
 
    @Id
    @GeneratedValue(generator = "UUID")
@@ -24,18 +24,18 @@ public class Servicio implements Serializable {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
+    @Override
     public UUID getId() {
         return id;
     }
-
+     @Override
     public void setId(UUID id) {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
     public void setName(String name) {
         this.name = name;
     }

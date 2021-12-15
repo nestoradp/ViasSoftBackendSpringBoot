@@ -5,6 +5,7 @@ import com.example.appdemoviasoft.Repository.IProvinciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,6 +19,13 @@ public class ProvinciaService {
    }
 
    public void crear(Provincia p){
+       if(p.getId()==null){
+           p.setEliminado(false);
+           p.setCreado(LocalDateTime.now());
+       }else{
+           p.setModificado(LocalDateTime.now());
+       }
+
        provinciaRepository.save(p);
    }
 

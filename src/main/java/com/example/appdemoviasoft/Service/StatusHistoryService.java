@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,8 +90,14 @@ Elements tr = table.getElementsByTag("tr");
  }
     }
 
-  public void InsertarData(HistoryStatusServicio servicio) {
-     historyRepository.save(servicio);
+  public void InsertarData(HistoryStatusServicio historyStatus) {
+          if(historyStatus.getId()==null){
+              historyStatus.setEliminado(false);;
+              historyStatus.setCreado(LocalDateTime.now());
+          }else{
+              historyStatus.setModificado(LocalDateTime.now());
+          }
+     historyRepository.save(historyStatus);
   }
 
 
