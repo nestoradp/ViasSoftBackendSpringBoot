@@ -6,6 +6,8 @@ import com.example.appdemoviasoft.Entity.Provincia;
 import com.example.appdemoviasoft.Entity.Servicio;
 import com.example.appdemoviasoft.Entity.Status;
 import com.example.appdemoviasoft.Repository.IHistoryStatusServicioRepository;
+import com.example.appdemoviasoft.Repository.IProvinciaRepository;
+import com.example.appdemoviasoft.Repository.IServicioRepository;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Map;
+
 
 
 @Service
@@ -22,6 +24,12 @@ public class StatusHistoryService {
 
   @Autowired
     IHistoryStatusServicioRepository historyRepository;
+
+  @Autowired
+    IProvinciaRepository provinciaRepository;
+
+  @Autowired
+    IServicioRepository servicioRepository;
 
   @Autowired
   ServicioService servicioService;
@@ -35,8 +43,9 @@ public class StatusHistoryService {
         String red = "vermehol";
 
         HashMap<String, Provincia> ProvinciaMap = new HashMap<>();
+    provinciaRepository.findAll().forEach(provincia -> ProvinciaMap.put(provincia.getNombre(), provincia));
         HashMap<String , Servicio> ServicioMap = new HashMap<>();
-
+    servicioRepository.findAll().forEach(servicio -> ServicioMap.put(servicio.getName(),servicio));
        String tittle = doc.title();
 
         System.out.println(tittle);
