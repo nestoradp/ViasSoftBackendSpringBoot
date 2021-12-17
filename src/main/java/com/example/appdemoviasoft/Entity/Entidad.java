@@ -15,9 +15,9 @@ public interface Entidad {
 
     public LocalDateTime getCreado();
 
-    public void setCreado(LocalDateTime DateTimeCreado);
+    public void setCreado(LocalDateTime creado);
 
     public LocalDateTime getModificado();
 
-    public void setModificado(LocalDateTime DateTimeModificado);
+    public void setModificado(LocalDateTime modificado);
 }

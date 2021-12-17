@@ -1,6 +1,8 @@
 package com.example.appdemoviasoft.Service;
 
 
+import com.example.appdemoviasoft.DTO.ProvinciaServicioStatusDTO;
+import com.example.appdemoviasoft.DTO.ServicioActualProvincia;
 import com.example.appdemoviasoft.Entity.HistoryStatusServicio;
 import com.example.appdemoviasoft.Entity.Provincia;
 import com.example.appdemoviasoft.Entity.Servicio;
@@ -8,6 +10,7 @@ import com.example.appdemoviasoft.Entity.Status;
 import com.example.appdemoviasoft.Repository.IHistoryStatusServicioRepository;
 import com.example.appdemoviasoft.Repository.IProvinciaRepository;
 import com.example.appdemoviasoft.Repository.IServicioRepository;
+import com.example.appdemoviasoft.Repository.ProvinciaServicioStatusRepository;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -15,8 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 
 
 @Service
@@ -30,6 +34,9 @@ public class StatusHistoryService {
 
   @Autowired
     IServicioRepository servicioRepository;
+
+  @Autowired
+    ProvinciaServicioStatusRepository provinciaServicioStatusRepository;
 
   @Autowired
   ServicioService servicioService;
@@ -108,6 +115,20 @@ Elements tr = table.getElementsByTag("tr");
           }
      historyRepository.save(historyStatus);
   }
+
+ public List<ProvinciaServicioStatusDTO> DevolverStatusService(){
+        List<ProvinciaServicioStatusDTO> ProvinciaList = new ArrayList<>();
+
+        for(Provincia provincia : provinciaRepository.findAll()){
+            List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), null,null);
+            ProvinciaServicioStatusDTO provinciaServicioStatusDTO = new ProvinciaServicioStatusDTO(provincia.getNombre(),ListaServicio);
+            ProvinciaList.add(provinciaServicioStatusDTO);
+        }
+        return ProvinciaList;
+ }
+
+
+
 
 
 

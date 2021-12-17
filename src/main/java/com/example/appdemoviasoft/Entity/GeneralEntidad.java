@@ -13,11 +13,11 @@ public abstract  class GeneralEntidad implements Entidad{
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    protected LocalDateTime DateTimeCreado;
+    protected LocalDateTime creado;
 
     @LastModifiedDate
     @Column
-    protected LocalDateTime DateTimeModificado;
+    protected LocalDateTime modificado;
 
     @Column
     protected boolean eliminado;
@@ -35,21 +35,21 @@ public abstract  class GeneralEntidad implements Entidad{
 
     @Override
     public LocalDateTime getCreado() {
-        return  DateTimeCreado;
+        return  creado;
     }
 
     @Override
-    public void setCreado(LocalDateTime DateTimeCreado) {
-        this.DateTimeCreado= DateTimeCreado;
+    public void setCreado(LocalDateTime creado) {
+        this.creado= creado;
     }
 
     @Override
     public LocalDateTime getModificado() {
-        return DateTimeModificado;
+        return modificado;
     }
 
     @Override
-    public void setModificado(LocalDateTime DateTimeModificado) {
-        this.DateTimeModificado= DateTimeModificado;
+    public void setModificado(LocalDateTime modificado) {
+        this.modificado= modificado;
     }
 }

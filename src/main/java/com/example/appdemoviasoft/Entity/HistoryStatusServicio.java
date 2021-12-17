@@ -4,12 +4,11 @@ package com.example.appdemoviasoft.Entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "historial")
-public class HistoryStatusServicio extends GeneralEntidad implements Serializable {
+public class HistoryStatusServicio extends GeneralEntidad  {
 
     @Id
     @GeneratedValue(generator = "UUID")
