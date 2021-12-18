@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -128,6 +129,20 @@ Elements tr = table.getElementsByTag("tr");
  }
 
 
+ public  ProvinciaServicioStatusDTO DevolverStatusServicioProvincia(UUID provinciaId)throws Exception{
+      Provincia provincia = provinciaRepository.findById(provinciaId).get();
+     ProvinciaServicioStatusDTO provinciaServicioStatusDTO = null;
+     if(provincia!=null){
+         List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), null,null);
+        provinciaServicioStatusDTO = new ProvinciaServicioStatusDTO(provincia.getNombre(),ListaServicio);
+
+
+     }else{
+         throw new Exception("No existe la provincia con ID"+ provinciaId);
+     }
+
+     return  provinciaServicioStatusDTO;
+ }
 
 
 
