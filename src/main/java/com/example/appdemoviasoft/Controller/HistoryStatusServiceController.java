@@ -1,5 +1,6 @@
 package com.example.appdemoviasoft.Controller;
 
+import com.example.appdemoviasoft.DTO.ProvinciaAfectadaDTO;
 import com.example.appdemoviasoft.DTO.ProvinciaServicioStatusDTO;
 import com.example.appdemoviasoft.Service.StatusHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,10 @@ public class HistoryStatusServiceController {
     return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
   }
 
-
+@GetMapping("/AfectadaProvincia")
+  public ProvinciaAfectadaDTO ProvinciaMayorAfcetacion(){
+    return statusHistoryService.ProvinciaMayorAfectacionServicio();
+}
 
 
 

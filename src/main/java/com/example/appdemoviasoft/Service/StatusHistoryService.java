@@ -1,16 +1,14 @@
 package com.example.appdemoviasoft.Service;
 
 
+import com.example.appdemoviasoft.DTO.ProvinciaAfectadaDTO;
 import com.example.appdemoviasoft.DTO.ProvinciaServicioStatusDTO;
 import com.example.appdemoviasoft.DTO.ServicioActualProvincia;
 import com.example.appdemoviasoft.Entity.HistoryStatusServicio;
 import com.example.appdemoviasoft.Entity.Provincia;
 import com.example.appdemoviasoft.Entity.Servicio;
 import com.example.appdemoviasoft.Entity.Status;
-import com.example.appdemoviasoft.Repository.IHistoryStatusServicioRepository;
-import com.example.appdemoviasoft.Repository.IProvinciaRepository;
-import com.example.appdemoviasoft.Repository.IServicioRepository;
-import com.example.appdemoviasoft.Repository.ProvinciaServicioStatusRepository;
+import com.example.appdemoviasoft.Repository.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -38,6 +36,9 @@ public class StatusHistoryService {
 
   @Autowired
     ProvinciaServicioStatusRepository provinciaServicioStatusRepository;
+
+  @Autowired
+    ProvinciaAfectadaRepository provinciaAfectadaRepository;
 
   @Autowired
   ServicioService servicioService;
@@ -145,7 +146,9 @@ Elements tr = table.getElementsByTag("tr");
  }
 
 
-
+public ProvinciaAfectadaDTO ProvinciaMayorAfectacionServicio(){
+        return provinciaAfectadaRepository.ConsultarProvinciaAfectada();
+}
 
 
 }
