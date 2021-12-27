@@ -28,13 +28,6 @@ public class HistoryStatusServiceController {
     return new ResponseEntity<Map<String, List<ProvinciaServicioStatusDTO>>>(map, HttpStatus.OK);
   }
 
- /*@GetMapping("StatusByprovincia")
- public List<ProvinciaServicioStatusDTO> DevolverStatusByProvincia() {
-
-   return statusHistoryService.DevolverStatusService();
-
- }*/
-
   @GetMapping("StatusProvincia/{id}")
   public ResponseEntity<Map<String, Object>> DevolverStatusProvinciaId(@PathVariable(name = "id") UUID id){
     HashMap<String, Object>map= new HashMap<>();
