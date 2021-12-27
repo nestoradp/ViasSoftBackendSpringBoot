@@ -122,7 +122,7 @@ Elements tr = table.getElementsByTag("tr");
         List<ProvinciaServicioStatusDTO> ProvinciaList = new ArrayList<>();
 
         for(Provincia provincia : provinciaRepository.findAll()){
-            List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), null,null);
+            List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), 8,null,null);
             ProvinciaServicioStatusDTO provinciaServicioStatusDTO = new ProvinciaServicioStatusDTO(provincia.getNombre(),ListaServicio);
             ProvinciaList.add(provinciaServicioStatusDTO);
         }
@@ -134,7 +134,7 @@ Elements tr = table.getElementsByTag("tr");
       Provincia provincia = provinciaRepository.findById(provinciaId).get();
      ProvinciaServicioStatusDTO provinciaServicioStatusDTO = null;
      if(provincia!=null){
-         List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), null,null);
+         List<ServicioActualProvincia> ListaServicio = provinciaServicioStatusRepository.DevolverEstado(provincia.getId(), 240,null,null);
         provinciaServicioStatusDTO = new ProvinciaServicioStatusDTO(provincia.getNombre(),ListaServicio);
 
 

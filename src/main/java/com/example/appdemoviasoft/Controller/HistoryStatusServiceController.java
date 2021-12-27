@@ -6,10 +6,7 @@ import com.example.appdemoviasoft.Service.StatusHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/historyStatus")
+@CrossOrigin({"*"})
 public class HistoryStatusServiceController {
   @Autowired
     StatusHistoryService statusHistoryService;
@@ -27,9 +25,15 @@ public class HistoryStatusServiceController {
   public ResponseEntity<Map<String, List<ProvinciaServicioStatusDTO>>> DevolverStatusByProvincia(){
     HashMap<String ,List<ProvinciaServicioStatusDTO>> map = new HashMap<>();
        map.put("ListProvinciaStatus", statusHistoryService.DevolverStatusService());
-
     return new ResponseEntity<Map<String, List<ProvinciaServicioStatusDTO>>>(map, HttpStatus.OK);
   }
+
+ /*@GetMapping("StatusByprovincia")
+ public List<ProvinciaServicioStatusDTO> DevolverStatusByProvincia() {
+
+   return statusHistoryService.DevolverStatusService();
+
+ }*/
 
   @GetMapping("StatusProvincia/{id}")
   public ResponseEntity<Map<String, Object>> DevolverStatusProvinciaId(@PathVariable(name = "id") UUID id){

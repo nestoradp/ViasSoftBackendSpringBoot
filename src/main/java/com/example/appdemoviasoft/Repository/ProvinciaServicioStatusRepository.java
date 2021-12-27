@@ -21,7 +21,7 @@ public class ProvinciaServicioStatusRepository {
   @Autowired
   IHistoryStatusServicioRepository historyStatusServicioRepository;
 
-  public List<ServicioActualProvincia> DevolverEstado(UUID provincia_id, LocalDateTime inicialDate, LocalDateTime finalDate) {
+  public List<ServicioActualProvincia> DevolverEstado(UUID provincia_id, int cantidad , LocalDateTime inicialDate, LocalDateTime finalDate) {
  var criteriaBuilder= entityManager.getCriteriaBuilder();
    var query= criteriaBuilder.createQuery(ServicioActualProvincia.class);
    var root = query.from(HistoryStatusServicio.class);
@@ -43,7 +43,7 @@ public class ProvinciaServicioStatusRepository {
     }
        var typedQuery = entityManager.createQuery(query);
 
-     var resultado  = typedQuery.getResultList();
+     var resultado  = typedQuery.setMaxResults(cantidad).getResultList();
 
     return resultado;
 
